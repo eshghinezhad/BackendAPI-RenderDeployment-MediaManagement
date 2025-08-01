@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  movie-listing-backend:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - MONGODB_URI=mongodb+srv://monireheshghinezhad:123456mM@vaccinedb.ok9gk.mongodb.net/MovieDB.Movies?retryWrites=true&w=majority&appName=VaccineDB
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin123
+    restart: unless-stopped 
