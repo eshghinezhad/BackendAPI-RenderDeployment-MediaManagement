@@ -2,6 +2,10 @@
 
 A Spring Boot application for managing movie listings with MongoDB integration.
 
+## 🌐 Live API
+
+**Production URL**: https://backendapi-renderdeployment.onrender.com/
+
 ## Features
 
 - RESTful API for movie management
@@ -106,6 +110,75 @@ The application will be available at `http://localhost:8080`
 - `GET /api/users/{id}` - Get user by ID
 - `PUT /api/users/{id}` - Update user
 - `DELETE /api/users/{id}` - Delete user
+
+## 🔗 Frontend Integration
+
+### React Frontend Connection
+
+To connect your React frontend to this backend API:
+
+#### 1. **API Base URL**
+```javascript
+const API_BASE_URL = 'https://backendapi-renderdeployment.onrender.com';
+```
+
+#### 2. **Example API Calls**
+```javascript
+// Get all movies
+const getMovies = async () => {
+  const response = await fetch(`${API_BASE_URL}/api/movies`, {
+    headers: {
+      'Authorization': 'Basic ' + btoa('admin:admin123'),
+      'Content-Type': 'application/json'
+    }
+  });
+  return response.json();
+};
+
+// Create a new movie
+const createMovie = async (movieData) => {
+  const response = await fetch(`${API_BASE_URL}/api/movies`, {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Basic ' + btoa('admin:admin123'),
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(movieData)
+  });
+  return response.json();
+};
+
+// User login
+const login = async (credentials) => {
+  const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  });
+  return response.json();
+};
+```
+
+#### 3. **CORS Configuration**
+The backend is configured to accept requests from any origin. If you need to restrict CORS, update the security configuration.
+
+#### 4. **Authentication**
+- **Basic Auth**: Use `admin:admin123` for protected endpoints
+- **JWT**: For user authentication, use the `/api/auth/login` endpoint
+
+#### 5. **Environment Variables**
+In your React app, you can set the API URL as an environment variable:
+```javascript
+// .env
+REACT_APP_API_URL=https://backendapi-renderdeployment.onrender.com
+```
+
+Then use it in your code:
+```javascript
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+```
 
 ## Security
 
