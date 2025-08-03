@@ -60,14 +60,10 @@ public class UserService implements UserDetailsService {
         }
         return user;
     }
-    // public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException{
-    //     Optional<User> user = userRepository.findByEmail(email);
-    //     if (!user.isPresent()){
-    //         throw new UsernameNotFoundException("User with email: " +email+" not found");
-    //     }
-    //     String userE = user.get().getEmail();
-    //     String userP = user.get().getPassword();
-    //     return new org.springframework.security.core.userdetails.User(userE, userP, new ArrayList<>());
-    // }
+
+    //  -------------------- Check if email is already registered --------------------
+    public boolean checkEmailExists(String email) {
+        return userRepository.existsByEmail(email);
+    }
    
 }

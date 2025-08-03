@@ -20,7 +20,7 @@ import Seneca.CJV.MovieListingBackend.model.User;
 import Seneca.CJV.MovieListingBackend.service.UserService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RequestMapping("/auth")
 public class AuthController
 

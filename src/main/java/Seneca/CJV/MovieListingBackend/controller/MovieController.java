@@ -23,7 +23,7 @@ import jakarta.validation.Valid;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000") 
+@CrossOrigin(origins = "*") 
 @RequestMapping("/show")
 public class MovieController {
 
