@@ -40,8 +40,8 @@ public class MovieService {
         return movies;
     }
 
-    public List<Movie> getFeatured(String type) {
-        return movieRepository.findByFeaturedNotNullAndTypeContainingIgnoreCase(type);
+    public List<Movie> getFeatured(String featured) {
+        return movieRepository.findByFeaturedContainingIgnoreCase(featured);
     }
 
     public Movie getMovieById(String id) throws Exception {
@@ -65,8 +65,7 @@ public class MovieService {
             updatedMovie.lposter() != null && !updatedMovie.lposter().trim().isEmpty() ? updatedMovie.lposter() : existingMovie.lposter(),
             updatedMovie.rent() != null && !updatedMovie.rent().trim().isEmpty() ? updatedMovie.rent() : existingMovie.rent(),
             updatedMovie.purchase() != null && !updatedMovie.purchase().trim().isEmpty() ? updatedMovie.purchase() : existingMovie.purchase(),
-            updatedMovie.featured()
-
+            updatedMovie.featured() != null && !updatedMovie.featured().trim().isEmpty() ? updatedMovie.featured() : existingMovie.featured()
         );
         return movieRepository.save(newMovie);
     }
