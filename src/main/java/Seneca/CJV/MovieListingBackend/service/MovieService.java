@@ -54,8 +54,6 @@ public class MovieService {
         Movie existingMovie = movieRepository.findById(id)
                 .orElseThrow(() -> new Exception("Movie with id " + id + " is not found."));
 
-        // Since Movie is a record (immutable), you cannot use setters.
-        // Instead, create a new Movie instance with updated fields.
         Movie newMovie = new Movie(
             existingMovie.id(),
             updatedMovie.title() != null && !updatedMovie.title().trim().isEmpty() ? updatedMovie.title() : existingMovie.title(),
@@ -79,12 +77,3 @@ public class MovieService {
         movieRepository.delete(existingMovie);
     }
 }
-
-//                  (updatedMovie.title() == null || updatedMovie.title().trim().isEmpty()) ? existingMovie.title() : updatedMovie.title(),
-//                 (updatedMovie.type() == null || updatedMovie.type().trim().isEmpty()) ? existingMovie.type() : updatedMovie.type(),
-//                 (updatedMovie.overview() == null || updatedMovie.overview().trim().isEmpty()) ? existingMovie.overview() : updatedMovie.overview(),
-//                 (updatedMovie.poster() == null || updatedMovie.poster().trim().isEmpty()) ? existingMovie.poster() : updatedMovie.poster(),
-//                 (updatedMovie.lposter() == null || updatedMovie.lposter().trim().isEmpty()) ? existingMovie.lposter() : updatedMovie.lposter(),
-//                 (updatedMovie.rent() == null || updatedMovie.rent().trim().isEmpty()) ? existingMovie.rent() : updatedMovie.rent(),
-//                 (updatedMovie.purchase() == null || updatedMovie.purchase().trim().isEmpty()) ? existingMovie.purchase() : updatedMovie.purchase(),
-//                 (updatedMovie.featured() == null || updatedMovie.featured().trim().isEmpty()) ? existingMovie.featured() : updatedMovie.featured()
